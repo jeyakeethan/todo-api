@@ -1,0 +1,66 @@
+# Ignore .NET build output directories
+/bin/
+/obj/
+
+# Ignore the user-specific Visual Studio files
+.vs/
+.vscode/
+.idea/
+
+# Ignore build results
+/build/
+/publish/
+
+# Ignore temporary files
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer files
+*.vssscc
+
+# User-specific files
+*.[Cc]ache
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore ASP.NET temporary files
+/Properties/launchSettings.json
+
+# Ignore project settings
+.project
+.settings/
+
+# Ignore npm packages and dependencies (for React or other front-end code)
+node_modules/
+
+# Ignore ASP.NET Core environment files
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+
+# Ignore ASP.NET Core logs
+logs/
+
+# Ignore NuGet packages
+*.nupkg
+# User specific NuGet packages
+.nuget/
+
+# Ignore package restore files
+packages/
+
+# Ignore JetBrains Rider IDE files
+.idea/
+
+# Ignore Visual Studio for Mac IDE files
+.vscode/
+
+# Ignore Docker
+docker-compose.override.yml
+Dockerfile
+*.dockerignore
