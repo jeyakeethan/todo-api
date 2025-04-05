@@ -1,14 +1,27 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Console.WriteLine(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+// Load environment variables from .env file
+if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Production")
+    Env.Load();
+
+var connectionString = $"server={Environment.GetEnvironmentVariable("MYSQL_HOST")};" +
+                       $"port={Environment.GetEnvironmentVariable("MYSQL_PORT")};" +
+                       $"database={Environment.GetEnvironmentVariable("MYSQL_DATABASE")};" +
+                       $"user={Environment.GetEnvironmentVariable("MYSQL_USER")};" +
+                       $"password={Environment.GetEnvironmentVariable("MYSQL_PASSWORD")};";
+Console.WriteLine(connectionString);
 
 // Add database connection
 builder.Services.AddDbContext<TodoDbContext>(options =>
     options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        new MySqlServerVersion(new Version(8, 0, 41))
+        connectionString,
+        new MySqlServerVersion(new Version(8, 0, 41)),
+        mysqlOptions => mysqlOptions.EnableRetryOnFailure()
     )
 );
 
