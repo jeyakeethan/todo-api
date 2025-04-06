@@ -62,5 +62,4 @@ packages/
 
 # Ignore Docker
 docker-compose.override.yml
-Dockerfile
 *.dockerignore
