@@ -1,27 +1,24 @@
-# Use .NET SDK for building
+# Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
-# Copy project file and restore dependencies
+# Copy project and restore
 COPY *.csproj ./
 RUN dotnet restore
 
-# Copy everything else and build
+# Copy the rest of the source and build
 COPY . ./
 RUN dotnet publish -c Release -o /out
 
-# Install EF Core tools globally
-RUN dotnet tool install --global dotnet-ef
-
-# Use .NET Runtime for the final container
+# Runtime Stage
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 
-# Copy compiled app
+# Copy the build output
 COPY --from=build /out .
 
-# Expose API port (adjust if needed)
-EXPOSE 5194
+# Expose API port
+EXPOSE 80
 
-# Run DB migrations and start the app
-CMD ["sh", "-c", "dotnet ef database update && dotnet todo-api.dll"]
+# Run the application
+CMD ["dotnet", "todo-api.dll"]

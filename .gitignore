@@ -5,7 +5,6 @@
 # Ignore the user-specific Visual Studio files
 .vs/
 .vscode/
-.idea/
 
 # Ignore build results
 /build/
@@ -34,9 +33,6 @@
 # Ignore project settings
 .project
 .settings/
-
-# Ignore npm packages and dependencies (for React or other front-end code)
-node_modules/
 
 # Ignore ASP.NET Core environment files
 appsettings.Development.json

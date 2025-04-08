@@ -39,11 +39,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
-    {
-        policy.AllowAnyOrigin() // Allows any origin
-              .AllowAnyMethod() // Allows any HTTP method (GET, POST, etc.)
-              .AllowAnyHeader(); // Allows any header
-    });
+   {
+       policy.AllowAnyOrigin()
+             .AllowAnyMethod()
+             .AllowAnyHeader();
+   });
 });
 
 var app = builder.Build();
@@ -58,6 +58,7 @@ if (app.Environment.IsDevelopment())
 // Ensure database is created
 using (var scope = app.Services.CreateScope())
 {
+    Thread.Sleep(2000);
     var context = scope.ServiceProvider.GetRequiredService<TodoDbContext>();
     context.Database.EnsureCreated(); // Ensure the table is created
 }
