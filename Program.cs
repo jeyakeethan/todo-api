@@ -58,7 +58,7 @@ if (app.Environment.IsDevelopment())
 // Ensure database is created
 using (var scope = app.Services.CreateScope())
 {
-    Thread.Sleep(2000);
+    Thread.Sleep(3000);
     var context = scope.ServiceProvider.GetRequiredService<TodoDbContext>();
     context.Database.EnsureCreated(); // Ensure the table is created
 }

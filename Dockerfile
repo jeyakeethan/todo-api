@@ -18,7 +18,7 @@ WORKDIR /app
 COPY --from=build /out .
 
 # Expose API port
-EXPOSE 80
+EXPOSE 8080
 
 # Run the application
 CMD ["dotnet", "todo-api.dll"]
